@@ -18,11 +18,21 @@ module.exports = express.Router()
     //.all(apiVersionPath + '/*', [requestValidationMiddleware])
 
     // users
-    .get('/api/v1/admin/users', usersRoutes.getUsers)
-    .post('/api/v1/admin/users', usersRoutes.createUser)
-    .get('/api/v1/admin/user/:username', usersRoutes.getUser)
-    .put('/api/v1/admin/user/:username', usersRoutes.updateUser)
-    .delete('/api/v1/admin/user/:username', usersRoutes.deleteUser)
+    .get(apiVersionPath + '/admin/users', usersRoutes.getUsers)
+    .post(apiVersionPath + '/admin/users', usersRoutes.createUser)
+    .get(apiVersionPath + '/admin/user/:username', usersRoutes.getUser)
+    .put(apiVersionPath + '/admin/user/:username', usersRoutes.updateUser)
+    .delete(apiVersionPath + '/admin/user/:username', usersRoutes.deleteUser)
+
+    /**
+     // images
+     .get(apiVersionPath + '/admin/images', imagesRoutes.getImages)
+     .post(apiVersionPath + '/admin/images', imagesRoutes.createImage)
+     .get(apiVersionPath + '/admin/image/:name', imagesRoutes.getImage)
+     .put(apiVersionPath + '/admin/image/:name', imagesRoutes.updateImage)
+     .delete(apiVersionPath + '/admin/image/:name', imagesRoutes.deleteImage)
+     **/
+
 
     .use(errorsRoutes.error404)
     .use(errorsRoutes.errorHandler);

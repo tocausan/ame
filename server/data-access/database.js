@@ -48,10 +48,8 @@ module.exports = {
                 db.collection(collection).findOne(filter).then(findResult => {
                     if (!findResult) {
                         db.collection(collection).insertOne(data).then(() => {
-                            console.log('inserted', collection, data);
                             resolve(data);
                         }, error => {
-                            console.log('not inserted', collection, data);
                             reject(error);
                         });
                     } else {

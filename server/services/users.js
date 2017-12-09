@@ -7,20 +7,16 @@ let _ = require('lodash'),
 module.exports = {
 
     insertOne: function (data) {
-        console.log(data);
-        console.log(0);
-        if (data) {
-            console.log(1);
+        return new Promise((resolve, reject) => {
+            if (!data) reject('empty data');
+
             let user = new User(data);
             databaseDataAccess.insertOneIfNotExist(config.database.collections.users, {username: user.username}, user).then(result => {
-                console.log(2);
                 let password = new Password(data);
                 password.hashPassword().then(() => {
-                    console.log(3);
                     if (result) databaseDataAccess.insertOneIfNotExist(config.database.collections.passwords, {username: password.username}, password).then(result => {
-                        console.log(4);
                         //console.log(result)
-                        return user;
+                        resolve(user);
                     }, err => {
                         console.log(err);
                     });
@@ -28,7 +24,7 @@ module.exports = {
             }, err => {
                 console.log(err);
             });
-        }
+        });
     },
 
     findAll: function () {

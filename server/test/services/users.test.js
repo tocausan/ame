@@ -1,24 +1,21 @@
 let expect = require('chai').expect,
-    userServices = require('../../services/user'),
+    usersServices = require('../../services/users'),
     User = require('../../models/User');
 
 let testUser = {
     username: 'test',
-    password: 'test'
+    password: 'test',
+    passwordConfirmation: 'test'
 };
 
 describe('users', function () {
 
     describe('insertOne', function () {
         it('should return an object', function () {
-
-            userServices.insertOne(testUser).then(result => {
+            usersServices.insertOne(testUser).then(result => {
                 if (result) {
                     expect(result)
                         .to.be.a('object')
-                } else {
-                    expect(result)
-                        .to.be.null
                 }
             }).catch(result => {
                 console.log(result);
@@ -28,13 +25,10 @@ describe('users', function () {
 
     describe('findAll', function () {
         it('should return an array', function () {
-            userServices.findAll().then(result => {
+            usersServices.findAll().then(result => {
                 if (result) {
                     expect(result)
                         .to.be.a('array')
-                } else {
-                    expect(result)
-                        .to.be.null
                 }
             }).catch(result => {
                 console.log(result);
@@ -44,7 +38,7 @@ describe('users', function () {
 
     describe('findOneByUsername', function () {
         it('should return an object', function () {
-            userServices.findOneByUsername('test').then(result => {
+            usersServices.findOneByUsername('test').then(result => {
                 if (result) {
                     expect(result)
                         .to.be.a('object')
@@ -60,7 +54,7 @@ describe('users', function () {
 
     describe('findOneAndUpdateByUsername', function () {
         it('should return an object', function () {
-            userServices.findOneAndUpdateByUsername('test', testUser).then(result => {
+            usersServices.findOneAndUpdateByUsername('test', testUser).then(result => {
                 if (result) {
                     expect(result)
                         .to.be.a('object')
@@ -76,7 +70,7 @@ describe('users', function () {
 
     describe('findOneAndDeleteByUsername', function () {
         it('should return an object', function () {
-            userServices.findOneAndDeleteByUsername('test', {username: 'test'}).then(result => {
+            usersServices.findOneAndDeleteByUsername('test', {username: 'test'}).then(result => {
                 if (result) {
                     expect(result)
                         .to.be.a('object')

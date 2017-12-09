@@ -3,7 +3,6 @@ let authServices = require('../services/auth'),
 
 module.exports = {
 
-    /** login **/
     login: function (req, res, next) {
         let credential = {
             username: req.body.username,
