@@ -4,6 +4,11 @@ describe('data-access', () => {
   require('./data-access');
 });
 
-//require('./models/User.test');
+describe('models', () => {
+  require('./models');
+});
 
-chai.assert.equal(1, 1);
+
+describe('services', () => {
+  require('./services');
+});

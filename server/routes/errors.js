@@ -1,4 +1,4 @@
-/** error routes **/
+let _ = require('lodash');
 
 module.exports = {
 
@@ -44,11 +44,11 @@ module.exports = {
 
     /** error handler **/
     errorHandler: function (err, req, res, next) {
-        // display error
-        console.log(err);
-        res.locals.error = err.message;
-        res.locals.status = err.status;
-        return res.status(err.status || 500)
-            .json(res.locals);
+        let message = {
+            status: !_.isNil(err.status) ? err.status : 500,
+            error: !_.isNil(err.message) ? err.message : '',
+            stack: !_.isNil(err.stack) ? err.stack : ''
+        };
+        return res.status(message.status).json(message);
     }
 };

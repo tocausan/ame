@@ -1,29 +1,39 @@
-let crypto = require('crypto'),
-  bcrypt = require('bcrypt');
+let _ = require('lodash'),
+    crypto = require('crypto');
 
 module.exports = class Password {
 
-  constructor(data) {
-    this.username = data.username ? data.username : '';
-    this.salt = this.generateSalt(16);
-    this.password = data.password ? this.hashPassword(this.salt, data.password) : '';
-  };
+    constructor(data) {
+        this.iterations = !_.isNil(data) && !_.isNil(data.iterations) ? data.iterations : Math.floor(Math.random() * 1000);
+        this.salt = !_.isNil(data) && !_.isNil(data.salt) ? data.salt : this.generateSalt();
+        this.username = !_.isNil(data) && !_.isNil(data.username) ? data.username : '';
+        this.password = !_.isNil(data) && !_.isNil(data.password) ? data.password : '';
+        this.passwordAttempt = !_.isNil(data) && !_.isNil(data.passwordAttempt) ? data.passwordAttempt : '';
+        this.hash = !_.isNil(data) && !_.isNil(data.hash) ? data.hash : '';
+    };
 
-  generateSalt (length) {
-    return crypto.randomBytes(Math.ceil(length / 2))
-      .toString('hex')
-      .slice(0, length);
-  };
+    generateSalt() {
+        return crypto.randomBytes(this.iterations).toString('base64');
+    };
 
-  sha512Password(salt, password) {
-    let hash = crypto.createHmac('sha512', salt);
-    hash.update(password);
-    return hash.digest('hex');
-  };
+    hashPassword() {
+        return new Promise((resolve, reject) => {
+            crypto.pbkdf2(this.password, this.salt, this.iterations, 512, 'sha512', (err, result) => {
+                if (err) reject(err);
+                this.hash = result.toString('base64');
+                resolve(result.toString('base64'));
+            });
+        });
+    };
 
-  static comparePassword(password) {
-    let hash = bcrypt.hashSync(password);
-    return bcrypt.compareSync(password, hash);
-  };
+    comparePassword() {
+        return new Promise((resolve, reject) => {
+            crypto.pbkdf2(this.passwordAttempt, this.salt, this.iterations, 512, 'sha512', (err, result) => {
+                if (err) reject(err);
+                if(_.isEmpty(this.hash)) console.log('Password hash is empty');
+                resolve(result.toString('base64'));
+            });
+        });
+    }
 
 };

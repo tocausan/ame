@@ -3,24 +3,24 @@ let config = require('../config'),
 
 module.exports = {
 
-  getAll: function(){
-    return databaseDataAccess.findAll(config.database.collections.users);
+  insertOne: function (data) {
+    return databaseDataAccess.insertOne(config.database.collections.users, data);
   },
 
-  getOneByUsername: function (username) {
+  findAll: function(){
+    return databaseDataAccess.find(config.database.collections.users);
+  },
+
+  findOneByUsername: function (username) {
     return databaseDataAccess.findOne(config.database.collections.users, {username: username})
   },
 
-  getOneUpdateByUsername: function (username, update) {
-    return databaseDataAccess.findOneUpdate(config.database.collections.users, {username: username}, update);
+  findOneAndUpdateByUsername: function (username, update) {
+    return databaseDataAccess.findOneAndUpdate(config.database.collections.users, {username: username}, update);
   },
 
-  getOneDeleteByUsername: function (username) {
-    return databaseDataAccess.findOneDelete(config.database.collections.users, {username: username});
-  },
-
-  addOne: function (data) {
-    return databaseDataAccess.insertOne(config.database.collections.users, data);
+  findOneAndDeleteByUsername: function (username) {
+    return databaseDataAccess.findOneAndDelete(config.database.collections.users, {username: username});
   }
 
 };

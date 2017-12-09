@@ -1,20 +1,35 @@
-var chai = require('chai');
+let expect = require('chai').expect,
+    User = require('../../models/User'),
+    enums = require('../../enums');
 
-__coverage__ = {
-  'a': 0
-};
-__coverage__['a']++
+describe('User', function () {
 
+    describe('new User()', function () {
+        it('should return an object with role = PUBLIC', function () {
+            expect(new User())
+                .to.be.a('object')
+                .to.have.all.keys(['username', 'picture', 'firstname', 'lastname', 'birthday', 'address', 'language', 'role'])
+                .to.have.property('role', enums.userRole.PUBLIC)
 
-describe('Array', function () {
-  describe('#indexOf()', function () {
-    it('should return -1 when the value is not present', function () {
-      var result = 1;
-      __coverage__['akk']++
-
-      chai.assert.equal(result, 1);
-      chai.assert.equal(-1, [1, 2, 3].indexOf(4));
+        });
     });
-  });
-});
 
+    describe('new User(data)', function () {
+        it('should return an object', function () {
+            expect(new User({
+                username: 'username',
+                picture: 'picture',
+                firstname: 'firstname',
+                lastname: 'lastname',
+                birthday: 'birthday',
+                address: 'address',
+                language: 'language',
+                role: 0
+            }))
+                .to.be.a('object')
+                .to.have.all.keys(['username', 'picture', 'firstname', 'lastname', 'birthday', 'address', 'language', 'role'])
+
+        });
+    });
+
+});

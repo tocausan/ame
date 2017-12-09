@@ -1,15 +1,18 @@
-/** token model **/
-
 let jwt = require('jwt-simple'),
     moment = require('moment'),
+    _ = require('lodash'),
     config = require('../config/index'),
-  databaseDataAccess = require('../data-access/database');
+    databaseDataAccess = require('../data-access/database');
 
 
 module.exports = class {
 
     constructor(data) {
-        data && data.username ? this.generate(data) : console.log('invalid creadential');
+        !_.isNil(data) && !_.isNil(data.username) ? this.generate(data) : this.error();
+    }
+
+    error(){
+        return 'invalid credential';
     }
 
     generate(data) {
@@ -19,7 +22,7 @@ module.exports = class {
         this.expiration = moment.utc().add(config.token.expiration, 'days').format();
 
         let filter = {username: this.username};
-        return databaseDataAccess.findOneUpdate(config.database.collections.token, filter, this);
+        return databaseDataAccess.findOneAndUpdate(config.database.collections.tokens, filter, this);
     }
 
 };

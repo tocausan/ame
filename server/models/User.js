@@ -1,17 +1,17 @@
-let userRoleEnums = require('../enums/user-role'),
-  languageEnums = require('../enums/language');
+let enums = require('../enums'),
+    _ = require('lodash');
 
 module.exports = class User {
 
   constructor(data) {
-    this.username = data.username ? data.username : '';
-    this.picture = data.picture ? data.picture : '';
-    this.firstname = data.firstname ? data.firstname : '';
-    this.lastname = data.lastname ? data.lastname : '';
-    this.birthday = data.birthday ? data.birthday : '';
-    this.address = data.address ? data.address : '';
-    this.language = data.language ? data.language : languageEnums.EN_US;
-    this.role = data.role ? data.role : userRoleEnums.PUBLIC;
+    this.username = !_.isNil(data) && !_.isNil(data.username) ? data.username : '';
+    this.firstname = !_.isNil(data) && !_.isNil(data.firstname) ? data.firstname : '';
+    this.lastname = !_.isNil(data) && !_.isNil(data.lastname) ? data.lastname : '';
+    this.birthday = !_.isNil(data) && !_.isNil(data.birthday) ? data.birthday : '';
+    this.address = !_.isNil(data) && !_.isNil(data.address) ? data.address : '';
+    this.picture = !_.isNil(data) && !_.isNil(data.picture) ? data.picture : '';
+    this.language = !_.isNil(data) && !_.isNil(data.language) ? data.language : enums.language.EN_US;
+    this.role = !_.isNil(data) && !_.isNil(data.role) ? data.role : enums.userRole.PUBLIC;
   }
 
 };

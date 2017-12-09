@@ -6,5 +6,5 @@ module.exports = {
         res.header('Access-Control-Allow-Headers', 'Content-Type');
         next();
     }
-
+    
 };
