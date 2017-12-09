@@ -2,18 +2,18 @@
 
 # compiled output
 /dist
-/server/dist
+/*/dist
 /tmp
-/server/tmp
+/*/tmp
 /out-tsc
-/server/out-tsc
+/*/out-tsc
 
 # dependencies
 /node_modules
-/server/node_modules
+/*/node_modules
 
 # IDEs and editors
-/.idea
+/*/.idea
 .project
 .classpath
 .c9/
@@ -30,25 +30,25 @@
 
 # misc
 /.sass-cache
-/server//.sass-cache
+/*/.sass-cache
 /connect.lock
-/server/connect.lock
+/*/connect.lock
 /coverage
-/server/coverage
+/*/coverage
 /libpeerconnection.log
-/server/libpeerconnection.log
+/*/libpeerconnection.log
 npm-debug.log
-/server/npm-debug.log
+/*/npm-debug.log
 testem.log
-/server/testem.log
+/*/testem.log
 /typings
-/server/typings
+/*/typings
 
 # e2e
 /e2e/*.js
-/server/e2e/*.js
+/*/e2e/*.js
 /e2e/*.map
-/server/e2e/*.map
+/*/e2e/*.map
 
 # System Files
 .DS_Store
