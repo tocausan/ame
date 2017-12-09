@@ -15,18 +15,29 @@
 # IDEs and editors
 /*/.idea
 .project
+/*/.project
 .classpath
+/*/.classpath
 .c9/
+/*/.c9/
 *.launch
+/*/*.launch
 .settings/
+/*/.settings/
 *.sublime-workspace
+/*/*.sublime-workspace
 
 # IDE - VSCode
 .vscode/*
+/*/.vscode/*
 !.vscode/settings.json
+/*/!.vscode/settings.json
 !.vscode/tasks.json
+/*/!.vscode/tasks.json
 !.vscode/launch.json
+/*/!.vscode/launch.json
 !.vscode/extensions.json
+/*/!.vscode/extensions.json
 
 # misc
 /.sass-cache
@@ -52,4 +63,6 @@ testem.log
 
 # System Files
 .DS_Store
+/*/.DS_Store
 Thumbs.db
+/*/Thumbs.db
