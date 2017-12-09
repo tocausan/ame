@@ -31,7 +31,7 @@ module.exports = class Password {
             crypto.pbkdf2(this.passwordAttempt, this.salt, this.iterations, 512, 'sha512', (err, result) => {
                 if (err) reject(err);
                 if(_.isEmpty(this.hash)) console.log('Password hash is empty');
-                resolve(result.toString('base64'));
+                resolve(this.hash === result.toString('base64'));
             });
         });
     }

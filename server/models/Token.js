@@ -8,13 +8,9 @@ let jwt = require('jwt-simple'),
 module.exports = class {
 
     constructor(data) {
-        !_.isNil(data) && !_.isNil(data.username) ? this.generate(data) : this.error();
+        !_.isNil(data) && !_.isNil(data.username) ? this.generate(data) : null;
     }
-
-    error(){
-        return 'invalid credential';
-    }
-
+    
     generate(data) {
         this.username = data.username;
         this.token = jwt.encode({exp: this.expires}, config.token.secret);

@@ -2,7 +2,10 @@ let expect = require('chai').expect,
     userServices = require('../../services/user'),
     User = require('../../models/User');
 
-let testUser = new User({username: 'test'});
+let testUser = {
+    username: 'test',
+    password: 'test'
+};
 
 describe('users', function () {
 

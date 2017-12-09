@@ -3,7 +3,7 @@ let userServices = require('../services/user');
 module.exports = {
 
     createUser: function (res, req, next) {
-        return userServices.insertOne(req.body);
+        return userServices.insertOne(req.req.body);
     },
 
     getUsers: function (res, req, next) {

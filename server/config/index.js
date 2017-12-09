@@ -7,6 +7,7 @@ module.exports = {
     collections: {
       test: 'test',
       users: 'users',
+      passwords: 'passwords',
       tokens: 'tokens'
     }
   },

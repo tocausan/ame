@@ -53,7 +53,7 @@ describe('Password', function () {
             password.hashPassword().then(() => {
                 password.comparePassword().then(result => {
                     expect(result)
-                        .to.be.a('string')
+                        .to.be.a('boolean')
                         .to.not.be.null
                         .to.not.be.undefined
                 }).catch(err => {
